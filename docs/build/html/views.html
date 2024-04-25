@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Views &#8212; OnlineLibrary 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=2709fde1"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to OnlineLibrary’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-reader.views">
+<span id="views"></span><h1>Views<a class="headerlink" href="#module-reader.views" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="reader.views.check_book">
+<span class="sig-prename descclassname"><span class="pre">reader.views.</span></span><span class="sig-name descname"><span class="pre">check_book</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">book_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reader.views.check_book" title="Link to this definition">¶</a></dt>
+<dd><p>The function returns the path to the book with the passed title.
+If there is no such book, it returns an empty string.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="reader.views.read_page">
+<span class="sig-prename descclassname"><span class="pre">reader.views.</span></span><span class="sig-name descname"><span class="pre">read_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">book</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#reader.views.read_page" title="Link to this definition">¶</a></dt>
+<dd><p>Function returning the page view of the reader</p>
+</dd></dl>
+
+<dl class="py function" id="module-bookmanage.views">
+<dt class="sig sig-object py" id="bookmanage.views.moderator_page_check">
+<span class="sig-prename descclassname"><span class="pre">bookmanage.views.</span></span><span class="sig-name descname"><span class="pre">moderator_page_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bookmanage.views.moderator_page_check" title="Link to this definition">¶</a></dt>
+<dd><p>A function that returns the moderation page of the application.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bookmanage.views.moderator_page_list">
+<span class="sig-prename descclassname"><span class="pre">bookmanage.views.</span></span><span class="sig-name descname"><span class="pre">moderator_page_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bookmanage.views.moderator_page_list" title="Link to this definition">¶</a></dt>
+<dd><p>A function that returns a page with a list of requests awaiting moderation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bookmanage.views.user_page_download">
+<span class="sig-prename descclassname"><span class="pre">bookmanage.views.</span></span><span class="sig-name descname"><span class="pre">user_page_download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bookmanage.views.user_page_download" title="Link to this definition">¶</a></dt>
+<dd><p>A function that returns the book’s download page.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bookmanage.views.user_page_list">
+<span class="sig-prename descclassname"><span class="pre">bookmanage.views.</span></span><span class="sig-name descname"><span class="pre">user_page_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bookmanage.views.user_page_list" title="Link to this definition">¶</a></dt>
+<dd><p>A function that returns a page with a list of abandoned requests.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bookmanage.views.user_page_proposal">
+<span class="sig-prename descclassname"><span class="pre">bookmanage.views.</span></span><span class="sig-name descname"><span class="pre">user_page_proposal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bookmanage.views.user_page_proposal" title="Link to this definition">¶</a></dt>
+<dd><p>Function that returns the page of the request with its current status.</p>
+</dd></dl>
+
+<dl class="py function" id="module-registration.views">
+<dt class="sig sig-object py" id="registration.views.input_err">
+<span class="sig-prename descclassname"><span class="pre">registration.views.</span></span><span class="sig-name descname"><span class="pre">input_err</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#registration.views.input_err" title="Link to this definition">¶</a></dt>
+<dd><p>Accepts the list of errors made when entering
+registration data, displays the corresponding messages to the user</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="registration.views.personal_account_page">
+<span class="sig-prename descclassname"><span class="pre">registration.views.</span></span><span class="sig-name descname"><span class="pre">personal_account_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#registration.views.personal_account_page" title="Link to this definition">¶</a></dt>
+<dd><p>Function displaying the personal account page</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="registration.views.registration_confirm">
+<span class="sig-prename descclassname"><span class="pre">registration.views.</span></span><span class="sig-name descname"><span class="pre">registration_confirm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mail_field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pass_field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pass_conf_field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#registration.views.registration_confirm" title="Link to this definition">¶</a></dt>
+<dd><p>The function takes the current values of the page fields,
+checks them, and then either puts them into
+the database or triggers an error output.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="registration.views.start_registration_page">
+<span class="sig-prename descclassname"><span class="pre">registration.views.</span></span><span class="sig-name descname"><span class="pre">start_registration_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#registration.views.start_registration_page" title="Link to this definition">¶</a></dt>
+<dd><p>Function that displays the registration page</p>
+</dd></dl>
+
+<dl class="py function" id="module-fullest_library.views">
+<dt class="sig sig-object py" id="fullest_library.views.book_page">
+<span class="sig-prename descclassname"><span class="pre">fullest_library.views.</span></span><span class="sig-name descname"><span class="pre">book_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">book_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fullest_library.views.book_page" title="Link to this definition">¶</a></dt>
+<dd><p>A function that returns the page of a book</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fullest_library.views.catalog_page">
+<span class="sig-prename descclassname"><span class="pre">fullest_library.views.</span></span><span class="sig-name descname"><span class="pre">catalog_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fullest_library.views.catalog_page" title="Link to this definition">¶</a></dt>
+<dd><p>A function that returns a catalog page</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fullest_library.views.change_book_status">
+<span class="sig-prename descclassname"><span class="pre">fullest_library.views.</span></span><span class="sig-name descname"><span class="pre">change_book_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fullest_library.views.change_book_status" title="Link to this definition">¶</a></dt>
+<dd><p>Function for changing the status of a book in the personal library</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fullest_library.views.main_page">
+<span class="sig-prename descclassname"><span class="pre">fullest_library.views.</span></span><span class="sig-name descname"><span class="pre">main_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fullest_library.views.main_page" title="Link to this definition">¶</a></dt>
+<dd><p>A function that returns the home page</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fullest_library.views.personal_library_page">
+<span class="sig-prename descclassname"><span class="pre">fullest_library.views.</span></span><span class="sig-name descname"><span class="pre">personal_library_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fullest_library.views.personal_library_page" title="Link to this definition">¶</a></dt>
+<dd><p>A function that returns the page of a personal bibliography</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fullest_library.views.search">
+<span class="sig-prename descclassname"><span class="pre">fullest_library.views.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fullest_library.views.search" title="Link to this definition">¶</a></dt>
+<dd><p>Search function to find a book, author or tag by text</p>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">OnlineLibrary</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">views</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reader.views.check_book"><code class="docutils literal notranslate"><span class="pre">check_book()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reader.views.read_page"><code class="docutils literal notranslate"><span class="pre">read_page()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bookmanage.views.moderator_page_check"><code class="docutils literal notranslate"><span class="pre">moderator_page_check()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bookmanage.views.moderator_page_list"><code class="docutils literal notranslate"><span class="pre">moderator_page_list()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bookmanage.views.user_page_download"><code class="docutils literal notranslate"><span class="pre">user_page_download()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bookmanage.views.user_page_list"><code class="docutils literal notranslate"><span class="pre">user_page_list()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bookmanage.views.user_page_proposal"><code class="docutils literal notranslate"><span class="pre">user_page_proposal()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#registration.views.input_err"><code class="docutils literal notranslate"><span class="pre">input_err()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#registration.views.personal_account_page"><code class="docutils literal notranslate"><span class="pre">personal_account_page()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#registration.views.registration_confirm"><code class="docutils literal notranslate"><span class="pre">registration_confirm()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#registration.views.start_registration_page"><code class="docutils literal notranslate"><span class="pre">start_registration_page()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fullest_library.views.book_page"><code class="docutils literal notranslate"><span class="pre">book_page()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fullest_library.views.catalog_page"><code class="docutils literal notranslate"><span class="pre">catalog_page()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fullest_library.views.change_book_status"><code class="docutils literal notranslate"><span class="pre">change_book_status()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fullest_library.views.main_page"><code class="docutils literal notranslate"><span class="pre">main_page()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fullest_library.views.personal_library_page"><code class="docutils literal notranslate"><span class="pre">personal_library_page()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fullest_library.views.search"><code class="docutils literal notranslate"><span class="pre">search()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to OnlineLibrary’s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Алексей Пашков, Егор Корчагин, Екатирина Захарова, Дмитрий Беляев.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/views.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
