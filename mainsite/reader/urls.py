@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
-    path('<str:book>/<int:page>', views.read_page),
+    path('<str:book>/<int:chapter>', views.read_page),
 ]
