@@ -10,7 +10,7 @@ class UserCreateForm(UserCreationForm):
     class Meta:
         model = User
         exclude = ('first_name', 'last_name')
-        fields = ('id_user', 'username', 'email')
+        fields = ('id', 'username', 'email')
 
     def save(self, commit=True):
         user = super(UserCreateForm, self).save(commit=False)
@@ -23,7 +23,7 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User
         exclude = ('first_name', 'last_name')
-        fields = ('id_user', 'username', 'email', 'password')
+        fields = ('id', 'username', 'email', 'password')
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=TextInput())

@@ -5,176 +5,66 @@ from django.utils import timezone
 
 
 class Author(models.Model):
-    id_author = models.IntegerField(db_column='ID_Author', primary_key=True)  # Field name made lowercase.
-    author_name = models.TextField(db_column='Author_Name')  # Field name made lowercase. This field type is a guess.
-
-    class Meta:
-        managed = False
-        db_table = 'Author'
-
-
-class Book(models.Model):
-    id_book = models.IntegerField(db_column='ID_Book', primary_key=True)  # Field name made lowercase.
-    id_user = models.ForeignKey('User', models.DO_NOTHING, db_column='ID_User')  # Field name made lowercase.
-    approved = models.BooleanField(db_column='Approved')  # Field name made lowercase.
-    name = models.TextField(db_column='Name')  # Field name made lowercase. This field type is a guess.
-    rate = models.FloatField(db_column='Rate')  # Field name made lowercase.
-    description = models.TextField(db_column='Description')  # Field name made lowercase. This field type is a guess.
-
-    class Meta:
-        managed = False
-        db_table = 'Book'
-
-
-class BookAuthor(models.Model):
-    book_id_book = models.ForeignKey(Book, models.DO_NOTHING, db_column='Book_ID_Book')  # Field name made lowercase.
-    author_id_author = models.ForeignKey(Author, models.DO_NOTHING,
-                                         db_column='Author_ID_Author')  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'Book_Author'
-
-
-class BookGenre(models.Model):
-    book_id_book = models.ForeignKey(Book, models.DO_NOTHING, db_column='Book_ID_Book')  # Field name made lowercase.
-    genre_id_genre = models.ForeignKey('Genre', models.DO_NOTHING,
-                                       db_column='Genre_ID_Genre')  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'Book_Genre'
-
-
-class BookTags(models.Model):
-    book_id_book = models.ForeignKey(Book, models.DO_NOTHING, db_column='Book_ID_Book')  # Field name made lowercase.
-    tags_id_tag = models.ForeignKey('Tags', models.DO_NOTHING, db_column='Tags_ID_Tag')  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'Book_Tags'
-
-
-class Comment(models.Model):
-    id_comment = models.IntegerField(db_column='ID_Comment', primary_key=True)  # Field name made lowercase.
-    text_comment = models.TextField(db_column='Text_Comment')  # Field name made lowercase. This field type is a guess.
-    positive_rate = models.IntegerField(db_column='Positive_rate')  # Field name made lowercase.
-    negative_rate = models.IntegerField(db_column='Negative_rate')  # Field name made lowercase.
-    id_book = models.ForeignKey(Book, models.DO_NOTHING, db_column='ID_Book')  # Field name made lowercase.
-    id_user = models.ForeignKey('User', models.DO_NOTHING, db_column='ID_User')  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'Comment'
+    author_name = models.CharField(max_length=255, null=False, blank=False)
 
 
 class Genre(models.Model):
-    id_genre = models.IntegerField(db_column='ID_Genre', primary_key=True)  # Field name made lowercase.
-    genre_name = models.TextField(db_column='Genre_Name')  # Field name made lowercase. This field type is a guess.
-
-    class Meta:
-        managed = False
-        db_table = 'Genre'
-
-
-class ProposeDelete(models.Model):
-    id_propose = models.IntegerField(db_column='ID_Propose', primary_key=True)  # Field name made lowercase.
-    id_book = models.ForeignKey(Book, models.DO_NOTHING, db_column='ID_Book')  # Field name made lowercase.
-    id_user = models.ForeignKey('User', models.DO_NOTHING, db_column='ID_User')  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'Propose_Delete'
+    genre_name = models.CharField(max_length=255, null=False, blank=False)
 
 
 class Tags(models.Model):
-    id_tag = models.IntegerField(db_column='ID_Tag', primary_key=True)  # Field name made lowercase.
-    tag_name = models.TextField(db_column='Tag_Name')  # Field name made lowercase. This field type is a guess.
+    tag_name = models.CharField(max_length=255, null=False, blank=False)
 
-    class Meta:
-        managed = False
-        db_table = 'Tags'
+
+class Book(models.Model):
+    authors = models.ManyToManyField(Author)
+    name = models.CharField(max_length=255, null=False, blank=False, default="Неизвестно")
+    rate = models.FloatField(null=False, blank=False, default=0.0)
+    description = models.CharField(max_length=700, null=False, blank=True, default="")
+    genres = models.ManyToManyField(Genre)
+    tags = models.ManyToManyField(Tags)
+    approved = models.BooleanField(default=False)
+
+
+class Comment(models.Model):
+    text_comment = models.CharField(max_length=700, null=False, blank=False)
+    comment_rate = models.IntegerField(default=0)
+    book = models.ForeignKey('Book', on_delete=models.CASCADE)
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
+
+
+class ProposeDelete(models.Model):
+    book = models.ForeignKey('Book', models.CASCADE)
+    user = models.ForeignKey('User', models.CASCADE)
+    reason = models.CharField(max_length=700, null=False, blank=True, default="")
 
 
 class CustomUserManager(BaseUserManager):
-    def _create_user(self, id_user, username, password, **extra_fields):
+    def _create_user(self, username, password, **extra_fields):
         if not password:
             raise ValueError("Нет пароля")
-        user = self.model(id_user=id_user, username=username, **extra_fields)
+        user = self.model(username=username, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_user(self, id_user, username=None, password=None, **extra_fields):
+    def create_user(self, username=None, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
-        return self._create_user(id_user, username, password, **extra_fields)
+        return self._create_user(username, password, **extra_fields)
 
-    def create_superuser(self, id_user, username=None, password=None, **extra_fields):
+    def create_superuser(self, username=None, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
-        return self._create_user(id_user, username, password, **extra_fields)
+        return self._create_user(username, password, **extra_fields)
 
 
-class User(AbstractBaseUser, PermissionsMixin):
-    id_user = models.IntegerField(db_column='Id_User', primary_key=True)  # Field name made lowercase.
-    username = models.TextField(db_column='Username',
-                                default="", unique=True)  # Field name made lowercase. This field type is a guess.
-    email = models.TextField(db_column='Email', unique=True,
-                             default='')  # Field name made lowercase. This field type is a guess.
-    password = models.TextField(db_column='Password')  # Field name made lowercase. This field type is a guess.
-
-    ROLES = (
-        (1, 1),  # admin
-        (2, 2),  # moder
-        (3, 3)   # reader
-    )
-
-    role = models.SmallIntegerField(db_column='Role', choices=ROLES, default=3)  # Field name made lowercase.
-    banned = models.BooleanField(db_column='Banned', default=False)  # Field name made lowercase.
-    id_book_read = models.TextField(db_column='ID_Book_Read', blank=True,
-                                    null=True)  # Field name made lowercase. This field type is a guess.
-    id_book_readen = models.TextField(db_column='ID_Book_Readen', blank=True,
-                                      null=True)  # Field name made lowercase. This field type is a guess.
-    id_book_planning = models.TextField(db_column='ID_Book_Planning', blank=True,
-                                        null=True)  # Field name made lowercase. This field type is a guess.
-    id_book_dropped = models.TextField(db_column='ID_Book_Dropped', blank=True,
-                                       null=True)  # Field name made lowercase. This field type is a guess.
-
-    is_active = models.BooleanField(db_column='is_active', default=True)
-    is_superuser = models.BooleanField(db_column='is_superuser', default=False)
-    is_staff = models.BooleanField(db_column='is_staff', default=False)
-
-    date_joined = models.DateTimeField(db_column='date_joined', default=timezone.now)
-    last_login = models.DateTimeField(db_column='last_login', blank=True, null=True)
+class User(AbstractUser, PermissionsMixin):
+    banned = models.BooleanField(default=False)
+    books_reading = models.ManyToManyField(Book, related_name="Читаю", blank=True)
+    book_read = models.ManyToManyField(Book, related_name="Прочитано", blank=True)
+    book_planning = models.ManyToManyField(Book, related_name="Планнирую", blank=True)
+    book_dropped = models.ManyToManyField(Book, related_name="Брошено", blank=True)
 
     objects = CustomUserManager()
-
-
-    USERNAME_FIELD = 'id_user'
-    EMAIL_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'email']
-
-    class Meta:
-        managed = True
-        db_table = 'User'
-
-
-    def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
-        return True
-
-    def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
-        return True
-
-    def get_full_name(self):
-        return self.username
-
-    def get_short_name(self):
-        return self.username or str(self.email).split('@')[0]
-
-    def __str__(self):
-        return self.username
+    REQUIRED_FIELDS = []

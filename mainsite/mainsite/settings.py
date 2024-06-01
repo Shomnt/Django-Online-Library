@@ -64,7 +64,7 @@ WSGI_APPLICATION = 'mainsite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'OnlineLibrary',
+        'NAME': 'OnlineLibraryMain',
         'USER': 'django_admin',
         'PASSWORD': 'admin',
         'HOST': 'localhost',
