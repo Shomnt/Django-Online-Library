@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, Group, AbstractUser
 from django.contrib.auth.models import BaseUserManager
 from django.utils import timezone
 
@@ -123,8 +123,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.TextField(db_column='Email', unique=True,
                              default='')  # Field name made lowercase. This field type is a guess.
     password = models.TextField(db_column='Password')  # Field name made lowercase. This field type is a guess.
-    role = models.SmallIntegerField(db_column='Role', default=1)  # Field name made lowercase.
-    confermed = models.BooleanField(db_column='Confermed', default=False)  # Field name made lowercase.
+
+    ROLES = (
+        (1, 1),  # admin
+        (2, 2),  # moder
+        (3, 3)   # reader
+    )
+
+    role = models.SmallIntegerField(db_column='Role', choices=ROLES, default=3)  # Field name made lowercase.
     banned = models.BooleanField(db_column='Banned', default=False)  # Field name made lowercase.
     id_book_read = models.TextField(db_column='ID_Book_Read', blank=True,
                                     null=True)  # Field name made lowercase. This field type is a guess.
@@ -144,13 +150,15 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = CustomUserManager()
 
+
     USERNAME_FIELD = 'id_user'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'email']
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'User'
+
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
