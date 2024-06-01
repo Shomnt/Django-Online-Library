@@ -7,6 +7,7 @@ from django.forms.widgets import PasswordInput, TextInput
 
 class UserCreateForm(UserCreationForm):
     email = forms.EmailField(help_text="Correct email, please", required=True)
+
     class Meta:
         model = User
         exclude = ('first_name', 'last_name')
@@ -19,11 +20,13 @@ class UserCreateForm(UserCreationForm):
             user.save()
         return user
 
+
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User
         exclude = ('first_name', 'last_name')
         fields = ('id', 'username', 'email', 'password')
+
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=TextInput())

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import UserCreateForm, LoginForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import auth
+from django.contrib.auth.models import auth, Group
 from django.contrib.auth import authenticate, login, logout
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
@@ -24,6 +24,7 @@ def activate(request, uidb64, token):
 
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
+        user.groups.add(Group.objects.get(name='Пользователь'))
         user.save()
 
         messages.success(request, "Thank you for your email confirmation. Now you can login your account.")
